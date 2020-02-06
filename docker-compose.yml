@@ -1,8 +1,14 @@
 version: "3"
 services:
-  api:
+  fastapi:
     build: .
+    container_name: api_server
     volumes:
       - ./app:/app
     ports:
       - 80:80
+  database:
+    image: postgres:12-alpine
+    container_name: db_server
+    environment:
+      - POSTGRES_PASSWORD
