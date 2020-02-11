@@ -5,7 +5,7 @@ from . import models, schemas
 
 def create_user(db: Session, user: schemas.UserCreate):
     password_with_secret = '{0}secret'.format(user.password)
-    md5hash = hashlib.md5(password_with_secret.endcode())
+    md5hash = hashlib.md5(password_with_secret.encode('UTF-8'))
     password_hashed = md5hash.hexdigest()
 
     db_user = models.User(
